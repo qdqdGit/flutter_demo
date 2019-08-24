@@ -93,12 +93,21 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text("open new route"),
               textColor: Colors.blue,
               onPressed: (){
-//                Navigator.push(context, MaterialPageRoute(builder: (context){
-//                  return NewRoute();
-//                }));
-              Navigator.pushNamed(context, "new_page");
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return NewRoute();
+                }));
+              },
+            ),
+            FlatButton(
+              child: Text("传参演示"),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return RouterTestRouter();
+                }));
               },
             )
+
           ],
         ),
       ),
@@ -107,6 +116,78 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class NewRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("新的路由"),
+      ),
+      body: Center(
+        child: Text("这是一个新的页脚"),
+      ),
+    );
+  }
+}
+
+class TipRoute extends StatelessWidget{
+  TipRoute({
+    Key key,
+    @required this.text, // 接收一个text参数
+  }):super(key: key);
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("提示"),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(18),
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Text(text),
+              RaisedButton(
+                onPressed: () => Navigator.pop(context, "我是返回值12"),
+                child: Text("返回"),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class RouterTestRouter extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Center(
+      child: RaisedButton(
+        onPressed: () async{
+          var result = await Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) {
+                  return TipRoute(
+                    text: "传入参数",
+                  );
+                }
+            )
+          );
+          print("路由返回值: $result");
+        },
+        child: Text("打开提示页"),
+      ),
     );
   }
 }
