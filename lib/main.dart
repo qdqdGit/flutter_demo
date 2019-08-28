@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -20,8 +18,7 @@ class MyApp extends StatelessWidget {
 //        });
 //      },
       routes: {
-        "new_page":(context)=>EchoRoute(),
-        "/":(context)=>MyHomePage(title: 'Flutter Demo Home Page'),//注册首页路由
+        "/":(context)=>MyHomePage(title: '装饰器演示'),//注册首页路由
       }
     );
   }
@@ -46,22 +43,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    final wordPair = new WordPair.random();
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -92,96 +75,34 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              '这是演示文本内容, 热重载演示'+wordPair.toString()
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-            FlutterLogo(
-              size: 200.0,
-              colors: Colors.amber,
-            ),
-            OutlineButton(
-              textColor: Colors.blue,
-              child: Text("OutlineButton"),
-              onPressed: (){
-                print("线框按钮");
-              },
-            ),
-            RaisedButton(
-              color: Colors.blue,
-              child: Text("RaisedButton"),
-              textColor: Colors.white,
-              onPressed: ()=>{},
-            ),
-            FlatButton(
-              child: Text("E"),
-              textColor: Colors.blue,
-              onPressed: (){
-
-              },
-            ),
-            FloatingActionButton(
-              child: Text("F"),
-              onPressed: (){
-                print("F");
-              },
-            ),
-            FlatButton(
-              child: Text("open new route"),
-              textColor: Colors.blue,
-              onPressed: (){
-//                Navigator.push(context, MaterialPageRoute(builder: (context){
-//                  return NewRoute();
-//                }));
-//                Navigator.pushNamed(context, "new_page");
-                  Navigator.of(context).pushNamed("new_page",arguments: "hi");
-              },
+            Container(
+              margin: EdgeInsets.only(top: 60.0,left: 90.0),
+              constraints: BoxConstraints.tightFor(width:300,height: 150),
+              decoration: BoxDecoration(
+                border: Border.all(width: 3,color: Color(0xffaaaaaa)),
+                // 实现阴影效果
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black54,
+                    offset: Offset(2.0, 2.0),
+                    blurRadius: 4.0
+                  )
+                ],
+                gradient: LinearGradient(
+                    colors: [Colors.red,Colors.blue,Colors.yellow]
+                )
+              ),
+              transform: Matrix4.rotationZ(.3),
+              alignment: Alignment.center,
+              child: Text(
+                " 佩奇",
+                style: TextStyle(color: Colors.white,fontSize: 30.0),
+              ),
             )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
-
-class NewRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("新的路由"),
-      ),
-      body: Center(
-        child: Text("这是一个新的页脚"),
-      ),
-    );
-  }
-}
-
-class EchoRoute extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    var args = ModalRoute.of(context).settings.arguments;
-    print("接收参数"+args);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("新路由"),
-      ),
-      body: Center(
-        child: Text("这是一个新的路由:"+args),
-      ),
     );
   }
 }
