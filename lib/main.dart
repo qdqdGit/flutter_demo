@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
 //        });
 //      },
       routes: {
-        "/":(context)=>MyHomePage(title: '装饰器演示'),//注册首页路由
+        "/":(context)=>MyHomePage(title: '装饰器演示'
+            ''),//注册首页路由
       }
     );
   }
@@ -55,7 +56,35 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text('本地优惠'),
+        leading: IconButton(
+            icon: new Icon(Icons.face),
+            onPressed: (){
+              print("Icons.face");
+            }),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.playlist_play),
+            tooltip: 'tooltipl',
+            onPressed: (){
+              print("tooltip1");
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.playlist_add),
+            tooltip: 'tooltip2',
+            onPressed: (){
+              print("tooltip2");
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.playlist_add_check),
+            tooltip: 'tooltip3',
+            onPressed: (){
+              print("tooltip3");
+            },
+          )
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
