@@ -44,6 +44,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  FixedExtentScrollController fixedExtentScrollController = new FixedExtentScrollController();
+
+  final List<String> imgList = [
+    'https://p0.meituan.net/deal/66516fcd8ae3975edd2f4b5f8a931ce925464.jpg.webp@180w_180h_1e_1c_1l_80q%7Cwatermark=0',
+    'https://p1.meituan.net/deal/141205589b18b856b87543af52abc29e35813.jpg.webp@180w_180h_1e_1c_1l_80q%7Cwatermark=0',
+    'https://p1.meituan.net/deal/bc4a2aa8ea099f18053ab1c3eac6b6ae409003.jpg.webp@180w_180h_1e_1c_1l_80q%7Cwatermark=0',
+    'https://p0.meituan.net/deal/e4f7972d34b289a00ae2491c70359024128785.jpg.webp@180w_180h_1e_1c_1l_80q%7Cwatermark=0',
+    'https://p1.meituan.net/deal/603250f870b1a380817b6e236f34d91e29643.jpg.webp@180w_180h_1e_1c_1l_80q%7Cwatermark=0',
+    'https://p1.meituan.net/deal/dc61effc0eea3e9e7eb46ad6538406104138050.jpg.webp@180w_180h_1e_1c_1l_80q%7Cwatermark=0',
+    'https://p1.meituan.net/deal/21cb8a9168c0cb1ef309f7b7a6127f3f29289.jpg.webp@180w_180h_1e_1c_1l_80q%7Cwatermark=0',
+    'https://p1.meituan.net/deal/0edbee70060eb1db27b7db7853dedb8424600.jpg.webp@180w_180h_1e_1c_1l_80q%7Cwatermark=0',
+    'https://p0.meituan.net/deal/0be8d6f4610dee0150b65f874192cabd47239.jpg.webp@180w_180h_1e_1c_1l_80q%7Cwatermark=0'
+  ];
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -87,56 +100,20 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Row(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          textDirection: TextDirection.ltr,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              width: 100,
-              height: 100,
-              color: Colors.blue,
-              alignment: Alignment.center,
-              child: Text("A",style: new TextStyle(color: Colors.white,fontSize: 25.0)),
-            ),
-            Spacer(
-              flex: 1,
-            ),
-            Container(
-              width: 100,
-              height:100,
-              color: Colors.blue,
-              alignment: Alignment.center,
-              child: Text("B",style: new TextStyle(color: Colors.white,fontSize: 25.0)),
-            ),
-            Spacer(
-              flex: 1,
-            ),
-            Container(
-              width: 100,
-              height: 100,
-              color: Colors.blue,
-              alignment: Alignment.center,
-              child: Text("C",style: new TextStyle(color: Colors.white,fontSize: 25.0)),
-            ),
-          ],
-        ),
+      body: ListWheelScrollView(
+          controller: fixedExtentScrollController,
+          physics: FixedExtentScrollPhysics(),
+          itemExtent: 150.0,
+          children: imgList.map((img){
+            return Card(
+              child: Row(
+                children: <Widget>[
+                  Image.network(img,width: 150.0),
+                  Text('文字介绍',style: TextStyle(fontSize: 20.0))
+                ],
+              ),
+            );
+          }).toList()
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
