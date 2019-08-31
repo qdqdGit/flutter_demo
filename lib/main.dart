@@ -61,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: new Icon(Icons.face),
             onPressed: (){
               print("Icons.face");
+              Navigator.pop(context);
             }),
         actions: <Widget>[
           IconButton(
@@ -89,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
+        child: Row(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -104,31 +105,36 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
+          textDirection: TextDirection.ltr,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top: 60.0,left: 90.0),
-              constraints: BoxConstraints.tightFor(width:300,height: 150),
-              decoration: BoxDecoration(
-                border: Border.all(width: 3,color: Color(0xffaaaaaa)),
-                // 实现阴影效果
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black54,
-                    offset: Offset(2.0, 2.0),
-                    blurRadius: 4.0
-                  )
-                ],
-                gradient: LinearGradient(
-                    colors: [Colors.red,Colors.blue,Colors.yellow]
-                )
-              ),
-              transform: Matrix4.rotationZ(.3),
+              width: 100,
+              height: 100,
+              color: Colors.blue,
               alignment: Alignment.center,
-              child: Text(
-                " 佩奇",
-                style: TextStyle(color: Colors.white,fontSize: 30.0),
-              ),
-            )
+              child: Text("A",style: new TextStyle(color: Colors.white,fontSize: 25.0)),
+            ),
+            Spacer(
+              flex: 1,
+            ),
+            Container(
+              width: 100,
+              height:100,
+              color: Colors.blue,
+              alignment: Alignment.center,
+              child: Text("B",style: new TextStyle(color: Colors.white,fontSize: 25.0)),
+            ),
+            Spacer(
+              flex: 1,
+            ),
+            Container(
+              width: 100,
+              height: 100,
+              color: Colors.blue,
+              alignment: Alignment.center,
+              child: Text("C",style: new TextStyle(color: Colors.white,fontSize: 25.0)),
+            ),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
