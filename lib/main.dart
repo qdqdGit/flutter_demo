@@ -44,7 +44,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  FixedExtentScrollController fixedExtentScrollController = new FixedExtentScrollController();
+  FixedExtentScrollController fixedExtentScrollController =
+  new FixedExtentScrollController();
 
   final List<String> imgList = [
     'https://p0.meituan.net/deal/66516fcd8ae3975edd2f4b5f8a931ce925464.jpg.webp@180w_180h_1e_1c_1l_80q%7Cwatermark=0',
@@ -57,64 +58,56 @@ class _MyHomePageState extends State<MyHomePage> {
     'https://p1.meituan.net/deal/0edbee70060eb1db27b7db7853dedb8424600.jpg.webp@180w_180h_1e_1c_1l_80q%7Cwatermark=0',
     'https://p0.meituan.net/deal/0be8d6f4610dee0150b65f874192cabd47239.jpg.webp@180w_180h_1e_1c_1l_80q%7Cwatermark=0'
   ];
+
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text('本地优惠'),
-        leading: IconButton(
-            icon: new Icon(Icons.face),
-            onPressed: (){
-              print("Icons.face");
-              Navigator.pop(context);
-            }),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.playlist_play),
-            tooltip: 'tooltipl',
-            onPressed: (){
-              print("tooltip1");
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.playlist_add),
-            tooltip: 'tooltip2',
-            onPressed: (){
-              print("tooltip2");
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.playlist_add_check),
-            tooltip: 'tooltip3',
-            onPressed: (){
-              print("tooltip3");
-            },
-          )
-        ],
+        title: Text("ListView"),
       ),
+//      body: ListView(
+//        padding: const EdgeInsets.all(10.0),
+//        itemExtent: 30.0,
+//        children: <Widget>[
+//          Text('A'),
+//          Text('B'),
+//          Text('C'),
+//          Text('D'),
+//          Text('E')
+//        ],
+//      ),
+//      body: ListView.separated(
+//        itemCount: 20,
+//        itemBuilder: (BuildContext context, int index) {
+//          return ListTile(title: Text("列表项$index"));
+//        },
+//        separatorBuilder: (BuildContext context, int index) {
+//          return Align(
+//            alignment: Alignment.centerLeft,
+//            child: FlutterLogo(),
+//          );
+//        },
+//      ),
       body: ListWheelScrollView(
-          controller: fixedExtentScrollController,
-          physics: FixedExtentScrollPhysics(),
-          itemExtent: 150.0,
-          children: imgList.map((img){
-            return Card(
+        controller: fixedExtentScrollController,
+        physics: FixedExtentScrollPhysics(),
+        itemExtent: 150.0,
+        children: imgList.map((img) {
+          return Card(
               child: Row(
                 children: <Widget>[
-                  Image.network(img,width: 150.0),
-                  Text('文字介绍',style: TextStyle(fontSize: 20.0))
+                  Image.network(
+                    img,
+                    width: 150.0,
+                  ),
+                  Text(
+                    '文字介绍',
+                    style: TextStyle(fontSize: 20.0),
+                  )
                 ],
-              ),
-            );
-          }).toList()
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+              ));
+        }).toList(),
+      ),
     );
   }
 }
