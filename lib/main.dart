@@ -50,48 +50,81 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("Flex"),
       ),
-      body: Column(
+      body: Wrap(
+        spacing: 2,
+        runSpacing: 2,
         children: <Widget>[
           Container(
-            height: 400,
-            child: Flex(
-              direction: Axis.vertical,
-              children: <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    color: Colors.red,
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    color: Colors.yellow,
-                  ),
-                )
-              ],
-            ),
+            height: 100,
+            width: 100,
+            color: Colors.red,
           ),
           Container(
-            height: 120.0,
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    color: Colors.blue,
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    color: Colors.red,
-                  ),
-                )
-              ],
-            ),
-          )
+            height: 100,
+            width: 100,
+            color: Colors.red,
+          ),
+          Container(
+            height: 100,
+            width: 100,
+            color: Colors.red,
+          ),
+          Container(
+            height: 100,
+            width: 100,
+            color: Colors.red,
+          ),
+          Container(
+            height: 100,
+            width: 100,
+            color: Colors.red,
+          ),
+          Container(
+            height: 100,
+            width: 100,
+            color: Colors.red,
+          ),
+          Container(
+            height: 100,
+            width: 100,
+            color: Colors.red,
+          ),
+          Container(
+            height: 100,
+            width: 100,
+            color: Colors.red,
+          ),
+          Container(
+            height: 100,
+            width: 100,
+            color: Colors.red,
+          ),
+          Container(
+            height: 100,
+            width: 100,
+            color: Colors.red,
+          ),
+          Container(
+            height: 100,
+            width: 100,
+            color: Colors.red,
+          ),
+          Container(
+            height: 100,
+            width: 100,
+            color: Colors.red,
+          ),
+          Container(
+            height: 100,
+            width: 100,
+            color: Colors.red,
+          ),
+          Container(
+            height: 100,
+            width: 100,
+            color: Colors.red,
+          ),
+
         ],
       ),
     );
