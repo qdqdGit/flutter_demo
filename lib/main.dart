@@ -48,47 +48,52 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ListView"),
+        title: Text("Flex"),
       ),
-      body:CustomScrollView(
-        slivers: <Widget>[
-          const SliverAppBar(
-            pinned: true,
-            expandedHeight: 250.0,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text('Demo'),
+      body: Column(
+        children: <Widget>[
+          Container(
+            height: 400,
+            child: Flex(
+              direction: Axis.vertical,
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    color: Colors.red,
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    color: Colors.yellow,
+                  ),
+                )
+              ],
             ),
           ),
-          SliverGrid(
-            gridDelegate:SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200.0,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
-              childAspectRatio: 4.0,
+          Container(
+            height: 120.0,
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    color: Colors.blue,
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    color: Colors.red,
+                  ),
+                )
+              ],
             ),
-            delegate: SliverChildBuilderDelegate(
-                (BuildContext context,int index){
-                  return Container(
-                    alignment: Alignment.center,
-                    color: Colors.teal[100 * (index % 9)],
-                    child: Text('grid item $index'),
-                  );
-                },
-              childCount: 20,
-            ),
-          ),
-          SliverFixedExtentList(
-            itemExtent: 50.0,
-              delegate: SliverChildBuilderDelegate((BuildContext context,int index){
-                return Container(
-                  alignment: Alignment.center,
-                  color: Colors.lightBlue[100*(index%9)],
-                  child: Text('list item $index'),
-                );
-              }),
           )
         ],
-      )
+      ),
     );
   }
 }
